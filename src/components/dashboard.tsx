@@ -168,6 +168,25 @@ function OpportunityCard({
   );
 }
 
+function QuoteStat({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone?: "long" | "short";
+}) {
+  return (
+    <div className="quote-stat rounded-md bg-bg-elevated px-1.5 py-3">
+      <p className="text-xs leading-none text-fg-subtle">{label}</p>
+      <p className={cn("quote-value", tone === "long" ? "text-long" : tone === "short" && "text-short")}>
+        {value}
+      </p>
+    </div>
+  );
+}
+
 function Detail({ op }: { op: Opportunity }) {
   const [copied, setCopied] = useState(false);
   async function onCopy() {
@@ -200,23 +219,11 @@ function Detail({ op }: { op: Opportunity }) {
         </Button>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-sm bg-bg-elevated px-3 py-3">
-          <p className="text-xs text-fg-subtle">Entrada</p>
-          <p className="font-mono text-lg tabular">{formatUsd(op.entry, true)}</p>
-        </div>
-        <div className="rounded-sm bg-bg-elevated px-3 py-3">
-          <p className="text-xs text-fg-subtle">Stop</p>
-          <p className="font-mono text-lg tabular text-short">{formatUsd(op.sl, true)}</p>
-        </div>
-        <div className="rounded-sm bg-bg-elevated px-3 py-3">
-          <p className="text-xs text-fg-subtle">Alvo</p>
-          <p className="font-mono text-lg tabular text-long">{formatUsd(op.tp, true)}</p>
-        </div>
-        <div className="rounded-sm bg-bg-elevated px-3 py-3">
-          <p className="text-xs text-fg-subtle">Quantidade</p>
-          <p className="font-mono text-lg tabular">{formatNum(op.shares, true)}</p>
-        </div>
+      <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <QuoteStat label="Entrada" value={formatUsd(op.entry, true)} />
+        <QuoteStat label="Stop" value={formatUsd(op.sl, true)} tone="short" />
+        <QuoteStat label="Alvo" value={formatUsd(op.tp, true)} tone="long" />
+        <QuoteStat label="Quantidade" value={formatNum(op.shares, true)} />
       </div>
 
       <div className="mt-4">
