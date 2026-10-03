@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: #f3f6fb;
+  --color-bg-elevated: #e7eef8;
+  --color-surface: #ffffff;
+  --color-surface-2: #e8eef7;
+  --color-fg: #02081c;
+  --color-fg-muted: #3d5274;
+  --color-fg-subtle: #6d7f9c;
+  --color-border: rgb(2 8 28 / 0.1);
+  --color-border-strong: rgb(2 8 28 / 0.16);
+  --color-accent: #0b68de;
+  --color-accent-fg: #ffffff;
+  --color-long: #0e8a52;
+  --color-long-fg: #e7f6ee;
+  --color-short: #c5362b;
+  --color-short-fg: #fdecea;
+  --color-warn: #9a6b2f;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    color-scheme: light;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: 0;
+  word-spacing: 0;
+  text-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.kpi-figure {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-inline: auto;
+  font-family: var(--font-sans);
+  font-variant-numeric: normal !important;
+  font-feature-settings: normal !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+  text-align: center !important;
+}
